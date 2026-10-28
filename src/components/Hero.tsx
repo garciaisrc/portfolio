@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from 'react'
-import { profile, heroSlides } from '../data/profile'
+import { heroSlides } from '../data/profile'
 
 const AUTOPLAY_MS = 6000
 
@@ -86,14 +86,6 @@ export default function Hero() {
                     <div className="hero__actions">
                       <a className="btn btn--primary" href="#proyectos" tabIndex={linkTabIndex}>
                         Ver proyectos
-                      </a>
-                      <a
-                        className="btn btn--ghost"
-                        href={profile.cvFile}
-                        download
-                        tabIndex={linkTabIndex}
-                      >
-                        Descargar CV
                       </a>
                     </div>
                   )}

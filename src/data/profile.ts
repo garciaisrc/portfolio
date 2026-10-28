@@ -8,7 +8,6 @@ export const profile = {
   email: 'garciaisrc@gmail.com',
   linkedin: 'https://www.linkedin.com/in/israel-garcia-cruz-21912b260',
   github: 'https://github.com/garciaisrc',
-  cvFile: `${import.meta.env.BASE_URL}cv-israel-garcia.pdf`,
 }
 
 export type HeroSlide = {

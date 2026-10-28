@@ -49,14 +49,6 @@ export default function Contact() {
           >
             LinkedIn
           </a>
-          <a
-            className={`btn btn--ghost reveal ${isInView ? 'reveal--visible' : ''}`}
-            style={{ transitionDelay: isInView ? '160ms' : '0ms' }}
-            href={profile.cvFile}
-            download
-          >
-            Descargar CV
-          </a>
         </div>
         <div className="contact__socials">
           <a
