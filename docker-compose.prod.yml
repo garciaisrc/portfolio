@@ -1,5 +1,5 @@
 services:
-  nginx:
+  portfolio:
     build: .
     container_name: portfolio_nginx
     restart: unless-stopped
