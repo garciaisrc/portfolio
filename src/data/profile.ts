@@ -23,9 +23,8 @@ export const heroSlides: HeroSlide[] = [
     text: profile.tagline,
   },
   {
-    eyebrow: 'Arquitectura',
-    title: 'Hexagonal + DDD',
-    text: 'Diseño sistemas con el dominio de negocio aislado de frameworks y bases de datos, usando Domain-Driven Design y arquitecturas orientadas a eventos para construir software desacoplado, testeable y fácil de evolucionar.',
+    title: 'Arquitectura',
+    text: 'Diseño sistemas desacoplados y escalables, aplicando buenas prácticas de arquitectura de software para construir código limpio, testeable y fácil de mantener a lo largo del tiempo.',
   },
   {
     eyebrow: 'Proyecto destacado',
