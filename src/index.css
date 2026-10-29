@@ -1,8 +1,8 @@
 :root {
-  --bg: #e6e6e3;
-  --bg-alt: #deded9;
-  --surface: #eff0ed;
-  --surface-border: #d5d5d0;
+  --bg: #e6e7e8;
+  --bg-alt: #dedfe0;
+  --surface: #eff0f1;
+  --surface-border: #d4d5d6;
   --text: #1f2328;
   --text-muted: #5b6270;
   --text-h: #1f2328;
@@ -22,7 +22,7 @@
   --alt-text-h: #ffffff;
 
   /* Translucent navbar background once scrolled, themed so it never reads as a light bar over a dark page. */
-  --navbar-bg: rgba(230, 230, 227, 0.85);
+  --navbar-bg: rgba(230, 231, 232, 0.85);
 
   --sans: 'DM Sans', system-ui, 'Segoe UI', Roboto, sans-serif;
   --serif: 'DM Serif Display', Georgia, serif;
