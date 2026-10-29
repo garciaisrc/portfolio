@@ -29,12 +29,19 @@ function spawnBubble(width: number, height: number): Bubble {
   }
 }
 
-export default function BubbleField() {
+export default function BubbleField({
+  force,
+  contained,
+}: {
+  force?: boolean
+  contained?: boolean
+}) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const { theme } = useTheme()
+  const active = force || theme === 'dark'
 
   useEffect(() => {
-    if (theme !== 'dark') return
+    if (!active) return
 
     const canvas = canvasRef.current
     if (!canvas) return
@@ -52,8 +59,8 @@ export default function BubbleField() {
     let running = false
 
     const resize = () => {
-      width = window.innerWidth
-      height = window.innerHeight
+      width = canvas.clientWidth
+      height = canvas.clientHeight
       const dpr = Math.min(window.devicePixelRatio || 1, 2)
       canvas.width = width * dpr
       canvas.height = height * dpr
@@ -109,9 +116,15 @@ export default function BubbleField() {
       document.removeEventListener('visibilitychange', onVisibility)
       window.removeEventListener('resize', resize)
     }
-  }, [theme])
+  }, [active])
 
-  if (theme !== 'dark') return null
+  if (!active) return null
 
-  return <canvas ref={canvasRef} className="bubble-field" aria-hidden="true" />
+  return (
+    <canvas
+      ref={canvasRef}
+      className={`bubble-field${contained ? ' bubble-field--contained' : ''}`}
+      aria-hidden="true"
+    />
+  )
 }
