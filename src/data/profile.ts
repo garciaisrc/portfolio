@@ -11,16 +11,14 @@ export const profile = {
 }
 
 export type HeroSlide = {
-  eyebrow: string
-  title: string
+  eyebrow?: string
+  title?: string
   subtitle?: string
   text: string
 }
 
 export const heroSlides: HeroSlide[] = [
   {
-    eyebrow: 'Hola, soy',
-    title: 'Israel Garcia Cruz',
     subtitle: profile.role,
     text: profile.tagline,
   },
@@ -108,6 +106,7 @@ export type Project = {
   stack: string[]
   link?: string
   featured?: boolean
+  image?: string
 }
 
 export const projects: Project[] = [

@@ -1,4 +1,6 @@
 import Navbar from './components/Navbar'
+import ClickRipple from './components/ClickRipple'
+import BubbleField from './components/BubbleField'
 import Hero from './components/Hero'
 import About from './components/About'
 import Skills from './components/Skills'
@@ -14,8 +16,13 @@ function App() {
   return (
     <ThemeProvider>
       <FilterProvider>
+        <BubbleField />
+        <a href="#main" className="skip-link">
+          Saltar al contenido
+        </a>
+        <ClickRipple />
         <Navbar />
-        <main>
+        <main id="main">
           <Hero />
           <About />
           <Skills />

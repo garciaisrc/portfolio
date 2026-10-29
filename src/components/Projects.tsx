@@ -27,6 +27,14 @@ export default function Projects() {
               style={{ transitionDelay: isInView ? `${i * 80}ms` : '0ms' }}
             >
               {project.featured && <span className="project-card__badge">Destacado</span>}
+              {project.image && (
+                <img
+                  className="project-card__image"
+                  src={project.image}
+                  alt={`Captura de ${project.name}`}
+                  loading="lazy"
+                />
+              )}
               <h4>{project.name}</h4>
               <p>{project.description}</p>
               <div className="tag-row">

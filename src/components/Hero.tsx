@@ -76,10 +76,10 @@ export default function Hero() {
             const isActive = i === index
             const linkTabIndex = isActive ? undefined : -1
             return (
-              <div className="hero-carousel__slide" key={slide.title} aria-hidden={!isActive}>
+              <div className="hero-carousel__slide" key={i} aria-hidden={!isActive}>
                 <div className="hero-carousel__content">
-                  <p className="eyebrow">{slide.eyebrow}</p>
-                  <h1>{slide.title}</h1>
+                  {slide.eyebrow && <p className="eyebrow">{slide.eyebrow}</p>}
+                  {slide.title && <h1>{slide.title}</h1>}
                   {slide.subtitle && <p className="hero-carousel__subtitle">{slide.subtitle}</p>}
                   <p className="hero-carousel__text">{slide.text}</p>
                   {i === 0 && (
@@ -124,10 +124,10 @@ export default function Hero() {
       </div>
 
       <div className="hero-carousel__indicators">
-        {heroSlides.map((slide, i) => (
+        {heroSlides.map((_, i) => (
           <button
             type="button"
-            key={slide.title}
+            key={i}
             className={i === index ? 'is-active' : ''}
             aria-label={`Ir a la diapositiva ${i + 1}`}
             onClick={() => goTo(i)}

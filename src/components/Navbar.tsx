@@ -38,12 +38,30 @@ function ThemeIcon({ theme }: { theme: Theme }) {
 export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [activeHref, setActiveHref] = useState(links[0].href)
   const { theme, toggleTheme } = useTheme()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    const sections = links
+      .map((link) => document.querySelector(link.href))
+      .filter((el): el is Element => el !== null)
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.find((entry) => entry.isIntersecting)
+        if (visible) setActiveHref(`#${visible.target.id}`)
+      },
+      { rootMargin: '-40% 0px -50% 0px', threshold: 0 },
+    )
+
+    sections.forEach((section) => observer.observe(section))
+    return () => observer.disconnect()
   }, [])
 
   return (
@@ -55,7 +73,12 @@ export default function Navbar() {
         <div className="navbar__right">
           <nav id="navbar-menu" className={`navbar__links ${open ? 'navbar__links--open' : ''}`}>
             {links.map((link) => (
-              <a key={link.href} href={link.href} onClick={() => setOpen(false)}>
+              <a
+                key={link.href}
+                href={link.href}
+                className={link.href === activeHref ? 'is-active' : ''}
+                onClick={() => setOpen(false)}
+              >
                 {link.label}
               </a>
             ))}
