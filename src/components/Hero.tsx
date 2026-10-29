@@ -6,8 +6,8 @@ import BubbleField from './BubbleField'
 const AUTOPLAY_MS = 6000
 
 const heroBgStyle = {
-  '--hero-bg-desktop': `url(${import.meta.env.BASE_URL}images/hero-bg-v3.jpg)`,
-  '--hero-bg-mobile': `url(${import.meta.env.BASE_URL}images/hero-bg-mobile-v3.jpg)`,
+  '--hero-bg-desktop': `url(${import.meta.env.BASE_URL}images/hero-bg-v4.jpg)`,
+  '--hero-bg-mobile': `url(${import.meta.env.BASE_URL}images/hero-bg-mobile-v4.jpg)`,
 } as CSSProperties
 
 export default function Hero() {
