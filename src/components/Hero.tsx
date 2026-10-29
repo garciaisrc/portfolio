@@ -1,9 +1,14 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from 'react'
 import { heroSlides } from '../data/profile'
 import { useTheme } from '../context/ThemeContext'
 import BubbleField from './BubbleField'
 
 const AUTOPLAY_MS = 6000
+
+const heroBgStyle = {
+  '--hero-bg-desktop': `url(${import.meta.env.BASE_URL}images/hero-bg.jpg)`,
+  '--hero-bg-mobile': `url(${import.meta.env.BASE_URL}images/hero-bg-mobile.jpg)`,
+} as CSSProperties
 
 export default function Hero() {
   const { theme } = useTheme()
@@ -34,6 +39,7 @@ export default function Hero() {
     <section
       id="inicio"
       className="hero-carousel"
+      style={heroBgStyle}
       aria-roledescription="carousel"
       aria-label="Presentación"
       onMouseEnter={() => (paused.current = true)}

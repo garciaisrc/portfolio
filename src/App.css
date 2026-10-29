@@ -401,7 +401,11 @@
   min-height: 560px;
   overflow: hidden;
   scroll-margin-top: 84px;
-  background: radial-gradient(120% 120% at 50% 0%, #11738a 0%, #0a4a59 45%, #052229 100%);
+  background-color: #052229;
+  background-image: var(--hero-bg-desktop);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
   display: flex;
   align-items: center;
 }
@@ -584,6 +588,7 @@
 @media (max-width: 760px) {
   .hero-carousel {
     min-height: 460px;
+    background-image: var(--hero-bg-mobile);
   }
 
   .hero-carousel__content {
