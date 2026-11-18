@@ -1,8 +1,8 @@
 :root {
-  --bg: #e6e7e8;
-  --bg-alt: #dedfe0;
-  --surface: #eff0f1;
-  --surface-border: #d4d5d6;
+  --bg: #f5f6f8;
+  --bg-alt: #ebedf0;
+  --surface: #ffffff;
+  --surface-border: #e3e5e9;
   --text: #1f2328;
   --text-muted: #5b6270;
   --text-h: #1f2328;
@@ -10,10 +10,22 @@
   --accent-dark: #d35400;
   /* Darker shade of --accent used only for small text on light surfaces, to meet WCAG AA (~5.3:1 vs ~2.7:1 for --accent). */
   --accent-text: #b8470a;
+  /* Space-separated RGB of --accent, for rgb(var(--accent-rgb) / alpha) tints (e.g. .tag) that can't use var() inside a hex literal. */
+  --accent-rgb: 255 118 0;
+  /* Text/icon color placed on top of a solid --accent fill (buttons, badges). White works on the light theme's orange; dark mode's yellow needs a dark foreground instead. */
+  --accent-contrast: #fff;
   --radius: 10px;
   --shadow: 0 10px 30px rgba(31, 35, 40, 0.1);
 
-  /* Dark "alternating band" surface, themed separately so it stays legible in both light and dark mode. */
+  /* Modern UI system: glassmorphism surfaces + soft dual-tone (neumorphic) shadows, built from the themed vars above via color-mix so they auto-adapt to light/dark without redeclaring per theme. */
+  --glass-bg: color-mix(in srgb, var(--surface) 55%, transparent);
+  --glass-bg-strong: color-mix(in srgb, var(--surface) 82%, transparent);
+  --glass-border: color-mix(in srgb, var(--text-h) 14%, transparent);
+  --neu-light: color-mix(in srgb, var(--bg) 100%, white 22%);
+  --neu-dark: color-mix(in srgb, var(--bg) 100%, black 20%);
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Dark "alternating band" surface (Skills/Proyectos), themed separately so it stays legible in both light and dark mode. */
   --alt-bg: #15171d;
   --alt-surface: #1b1e27;
   --alt-surface-border: #2a2d38;
@@ -22,7 +34,7 @@
   --alt-text-h: #ffffff;
 
   /* Translucent navbar background once scrolled, themed so it never reads as a light bar over a dark page. */
-  --navbar-bg: rgba(230, 231, 232, 0.85);
+  --navbar-bg: rgba(245, 246, 248, 0.85);
 
   --sans: 'DM Sans', system-ui, 'Segoe UI', Roboto, sans-serif;
   --serif: 'DM Serif Display', Georgia, serif;
@@ -36,44 +48,71 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
-    --bg: #0a4a59;
-    --bg-alt: #0c5264;
-    --surface: #0a1316;
-    --surface-border: rgba(255, 255, 255, 0.12);
-    --text: #dbe7ea;
-    --text-muted: #a9c1c6;
+    --bg: #0b1220;
+    --bg-alt: #0d1a2e;
+    --surface: #101b2f;
+    --surface-border: rgba(255, 255, 255, 0.08);
+    --text: #c7cedb;
+    --text-muted: #8a93a6;
     --text-h: #ffffff;
-    --accent-text: #ff9a4d;
+    --accent: #ffd500;
+    --accent-dark: #e0ab00;
+    --accent-text: #ffd500;
+    --accent-rgb: 255 213 0;
+    --accent-contrast: #101b2f;
 
-    --alt-bg: #0c5264;
-    --alt-surface: #0a1316;
-    --alt-surface-border: rgba(255, 255, 255, 0.12);
-    --alt-text: #dbe7ea;
-    --alt-text-muted: #a9c1c6;
+    --alt-bg: #000000;
+    --alt-surface: #121212;
+    --alt-surface-border: #262626;
+    --alt-text: #c7cedb;
+    --alt-text-muted: #8a93a6;
     --alt-text-h: #ffffff;
-    --navbar-bg: rgba(10, 74, 89, 0.85);
+    --navbar-bg: rgba(11, 18, 32, 0.85);
     color-scheme: dark;
   }
 }
 
 :root[data-theme='dark'] {
-  --bg: #0a4a59;
-  --bg-alt: #0c5264;
-  --surface: #0a1316;
-  --surface-border: rgba(255, 255, 255, 0.12);
-  --text: #dbe7ea;
-  --text-muted: #a9c1c6;
+  --bg: #0b1220;
+  --bg-alt: #0d1a2e;
+  --surface: #101b2f;
+  --surface-border: rgba(255, 255, 255, 0.08);
+  --text: #c7cedb;
+  --text-muted: #8a93a6;
   --text-h: #ffffff;
-  --accent-text: #ff9a4d;
+  --accent: #ffd500;
+  --accent-dark: #e0ab00;
+  --accent-text: #ffd500;
+  --accent-rgb: 255 213 0;
+  --accent-contrast: #101b2f;
 
-  --alt-bg: #0c5264;
-  --alt-surface: #0a1316;
-  --alt-surface-border: rgba(255, 255, 255, 0.12);
-  --alt-text: #dbe7ea;
-  --alt-text-muted: #a9c1c6;
+  --alt-bg: #000000;
+  --alt-surface: #121212;
+  --alt-surface-border: #262626;
+  --alt-text: #c7cedb;
+  --alt-text-muted: #8a93a6;
   --alt-text-h: #ffffff;
-  --navbar-bg: rgba(10, 74, 89, 0.85);
+  --navbar-bg: rgba(11, 18, 32, 0.85);
   color-scheme: dark;
+}
+
+/* Soft diffused blue glow over the dark navy base, matching the reference screenshot's background instead of a flat color. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) body {
+    background:
+      radial-gradient(900px 600px at 85% 0%, rgba(59, 103, 230, 0.24), transparent 60%),
+      radial-gradient(700px 560px at 0% 100%, rgba(37, 73, 189, 0.16), transparent 65%),
+      var(--bg);
+    background-attachment: fixed;
+  }
+}
+
+[data-theme='dark'] body {
+  background:
+    radial-gradient(900px 600px at 85% 0%, rgba(59, 103, 230, 0.24), transparent 60%),
+    radial-gradient(700px 560px at 0% 100%, rgba(37, 73, 189, 0.16), transparent 65%),
+    var(--bg);
+  background-attachment: fixed;
 }
 
 * {
@@ -88,7 +127,12 @@
 
 body {
   margin: 0;
-  background: var(--bg);
+  /* Soft diffused glow (faint orange + cool blue) over the flat base color, for the same futuristic/3D-depth feel as the dark theme's blue glow below. Kept subtle so the base reads as a clean neutral white, not a yellow tint. */
+  background:
+    radial-gradient(900px 600px at 85% 0%, rgba(255, 118, 0, 0.05), transparent 60%),
+    radial-gradient(700px 560px at 0% 100%, rgba(37, 99, 235, 0.06), transparent 65%),
+    var(--bg);
+  background-attachment: fixed;
   transition: background 0.2s ease, color 0.2s ease;
   overflow-x: hidden;
 }
