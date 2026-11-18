@@ -21,6 +21,39 @@ function GitHubIcon() {
   )
 }
 
+function MailIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="m3.5 6 8.5 7 8.5-7" />
+    </svg>
+  )
+}
+
+const contactMethods = [
+  {
+    icon: <MailIcon />,
+    label: 'Email',
+    description: 'Escríbeme cuando quieras.',
+    href: (p: typeof profile) => `mailto:${p.email}`,
+    external: false,
+  },
+  {
+    icon: <LinkedInIcon />,
+    label: 'LinkedIn',
+    description: 'Conectemos y hablemos de oportunidades.',
+    href: (p: typeof profile) => p.linkedin,
+    external: true,
+  },
+  {
+    icon: <GitHubIcon />,
+    label: 'GitHub',
+    description: 'Explora mis proyectos y código.',
+    href: (p: typeof profile) => p.github,
+    external: true,
+  },
+]
+
 export default function Contact() {
   const { ref, isInView } = useInView<HTMLElement>()
 
@@ -32,45 +65,22 @@ export default function Contact() {
     >
       <h2 className="section__title">Contacto</h2>
       <div className="contact">
-        <p>¿Tienes un proyecto en mente o una oportunidad? Escríbeme.</p>
-        <div className="contact__links">
-          <a
-            className={`btn btn--primary reveal ${isInView ? 'reveal--visible' : ''}`}
-            href={`mailto:${profile.email}`}
-          >
-            {profile.email}
-          </a>
-          <a
-            className={`btn btn--ghost reveal ${isInView ? 'reveal--visible' : ''}`}
-            style={{ transitionDelay: isInView ? '80ms' : '0ms' }}
-            href={profile.linkedin}
-            target="_blank"
-            rel="noreferrer"
-          >
-            LinkedIn
-          </a>
-        </div>
-        <div className="contact__socials">
-          <a
-            className={`social-icon reveal ${isInView ? 'reveal--visible' : ''}`}
-            style={{ transitionDelay: isInView ? '240ms' : '0ms' }}
-            href={profile.linkedin}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="LinkedIn"
-          >
-            <LinkedInIcon />
-          </a>
-          <a
-            className={`social-icon reveal ${isInView ? 'reveal--visible' : ''}`}
-            style={{ transitionDelay: isInView ? '320ms' : '0ms' }}
-            href={profile.github}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="GitHub"
-          >
-            <GitHubIcon />
-          </a>
+        <p>¿Tienes un proyecto en mente o una oportunidad? Escríbeme por cualquiera de estos medios.</p>
+        <div className="contact-grid">
+          {contactMethods.map((method, i) => (
+            <a
+              key={method.label}
+              className={`contact-card reveal ${isInView ? 'reveal--visible' : ''}`}
+              style={{ transitionDelay: isInView ? `${i * 80}ms` : '0ms' }}
+              href={method.href(profile)}
+              target={method.external ? '_blank' : undefined}
+              rel={method.external ? 'noreferrer' : undefined}
+            >
+              <span className="contact-card__icon">{method.icon}</span>
+              <span className="contact-card__label">{method.label}</span>
+              <span className="contact-card__description">{method.description}</span>
+            </a>
+          ))}
         </div>
       </div>
     </section>

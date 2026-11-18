@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState, type CSSProperties } from 're
 import { heroSlides } from '../data/profile'
 import { useTheme } from '../context/ThemeContext'
 import BubbleField from './BubbleField'
+import RoleTyper from './RoleTyper'
 
 const AUTOPLAY_MS = 6000
 
@@ -84,7 +85,14 @@ export default function Hero() {
                 <div className="hero-carousel__content">
                   {slide.eyebrow && <p className="eyebrow">{slide.eyebrow}</p>}
                   {slide.title && <h1>{slide.title}</h1>}
-                  {slide.subtitle && <p className="hero-carousel__subtitle">{slide.subtitle}</p>}
+                  {i === 0 && (
+                    <p className="hero-carousel__subtitle">
+                      <RoleTyper />
+                    </p>
+                  )}
+                  {i !== 0 && slide.subtitle && (
+                    <p className="hero-carousel__subtitle">{slide.subtitle}</p>
+                  )}
                   <p className="hero-carousel__text">{slide.text}</p>
                   {i === 0 && (
                     <div className="hero__actions">

@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useTheme, type Theme } from '../context/ThemeContext'
 
-const links = [
+export const navLinks = [
   { href: '#inicio', label: 'Inicio' },
   { href: '#about', label: 'Sobre mí' },
+  { href: '#servicios', label: 'Servicios' },
   { href: '#skills', label: 'Skills' },
   { href: '#experiencia', label: 'Experiencia' },
   { href: '#proyectos', label: 'Proyectos' },
@@ -38,7 +39,7 @@ function ThemeIcon({ theme }: { theme: Theme }) {
 export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [activeHref, setActiveHref] = useState(links[0].href)
+  const [activeHref, setActiveHref] = useState(navLinks[0].href)
   const { theme, toggleTheme } = useTheme()
 
   useEffect(() => {
@@ -48,7 +49,7 @@ export default function Navbar() {
   }, [])
 
   useEffect(() => {
-    const sections = links
+    const sections = navLinks
       .map((link) => document.querySelector(link.href))
       .filter((el): el is Element => el !== null)
 
@@ -72,7 +73,7 @@ export default function Navbar() {
         </a>
         <div className="navbar__right">
           <nav id="navbar-menu" className={`navbar__links ${open ? 'navbar__links--open' : ''}`}>
-            {links.map((link) => (
+            {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}

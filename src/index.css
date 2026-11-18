@@ -36,8 +36,8 @@
   /* Translucent navbar background once scrolled, themed so it never reads as a light bar over a dark page. */
   --navbar-bg: rgba(245, 246, 248, 0.85);
 
-  --sans: 'DM Sans', system-ui, 'Segoe UI', Roboto, sans-serif;
-  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'Michroma', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --serif: 'Michroma', system-ui, 'Segoe UI', Roboto, sans-serif;
   color-scheme: light;
   color: var(--text);
   background: var(--bg);

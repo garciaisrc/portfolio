@@ -8,6 +8,13 @@ export const profile = {
   email: 'garciaisrc@gmail.com',
   linkedin: 'https://www.linkedin.com/in/israel-garcia-cruz-21912b260',
   github: 'https://github.com/garciaisrc',
+  roles: [
+    'Full-Stack Developer',
+    'Backend Developer · Java & Laravel',
+    'Frontend Developer · Angular & React',
+    'Arquitecto de Software',
+    'DevOps & Cloud (AWS)',
+  ],
 }
 
 export type HeroSlide = {
@@ -30,6 +37,39 @@ export const heroSlides: HeroSlide[] = [
     eyebrow: 'Proyecto destacado',
     title: 'Jaznex Dental',
     text: 'SaaS para gestión de clínicas dentales: backend en Laravel 11 con PostgreSQL y frontend en Angular 18, dockerizado y publicado mediante Cloudflare Tunnel.',
+  },
+]
+
+export type Service = {
+  icon: 'fullstack' | 'hex' | 'sparkle' | 'cloud'
+  title: string
+  description: string
+}
+
+export const services: Service[] = [
+  {
+    icon: 'fullstack',
+    title: 'Desarrollo Full Stack',
+    description:
+      'APIs backend robustas (Java, Laravel, Node.js) y frontends modernos (Angular, React) integrados de punta a punta.',
+  },
+  {
+    icon: 'hex',
+    title: 'Arquitectura de Software',
+    description:
+      'Arquitectura Hexagonal, Domain-Driven Design y Event-Driven Architecture para sistemas desacoplados, testeables y listos para escalar.',
+  },
+  {
+    icon: 'sparkle',
+    title: 'Automatización & IA',
+    description:
+      'Agentes de IA y LLM Harness para automatizar procesos e integrar modelos de lenguaje en flujos de negocio reales.',
+  },
+  {
+    icon: 'cloud',
+    title: 'DevOps & Cloud',
+    description:
+      'Despliegues con Docker y Nginx, infraestructura en AWS, y monitoreo con Kibana, Dynatrace y Datadog.',
   },
 ]
 

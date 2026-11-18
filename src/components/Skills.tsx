@@ -1,5 +1,6 @@
 import { skillGroups } from '../data/profile'
 import { useInView } from '../hooks/useInView'
+import SkillIcon from './icons/SkillIcon'
 
 export default function Skills() {
   const { ref, isInView } = useInView<HTMLElement>()
@@ -21,7 +22,10 @@ export default function Skills() {
             <h4>{group.title}</h4>
             <ul>
               {group.items.map((item) => (
-                <li key={item}>{item}</li>
+                <li key={item}>
+                  <SkillIcon name={item} />
+                  <span>{item}</span>
+                </li>
               ))}
             </ul>
           </div>

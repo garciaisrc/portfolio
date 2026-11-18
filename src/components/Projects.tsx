@@ -27,14 +27,25 @@ export default function Projects() {
               style={{ transitionDelay: isInView ? `${i * 80}ms` : '0ms' }}
             >
               {project.featured && <span className="project-card__badge">Destacado</span>}
-              {project.image && (
-                <img
-                  className="project-card__image"
-                  src={project.image}
-                  alt={`Captura de ${project.name}`}
-                  loading="lazy"
-                />
-              )}
+              <div className="project-card__frame">
+                <div className="project-card__frame-bar" aria-hidden="true">
+                  <span />
+                  <span />
+                  <span />
+                </div>
+                {project.image ? (
+                  <img
+                    className="project-card__image"
+                    src={project.image}
+                    alt={`Captura de ${project.name}`}
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="project-card__placeholder" aria-hidden="true">
+                    <span>{project.name.slice(0, 2).toUpperCase()}</span>
+                  </div>
+                )}
+              </div>
               <h4>{project.name}</h4>
               <p>{project.description}</p>
               <div className="tag-row">
