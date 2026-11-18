@@ -954,26 +954,6 @@
   display: block;
 }
 
-.project-card__placeholder {
-  aspect-ratio: 16 / 9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--accent) 30%, var(--surface)),
-    color-mix(in srgb, var(--accent) 8%, var(--surface))
-  );
-}
-
-.project-card__placeholder span {
-  font-weight: 800;
-  font-size: 40px;
-  letter-spacing: 0.04em;
-  color: color-mix(in srgb, var(--accent) 70%, white 10%);
-  opacity: 0.85;
-}
-
 .project-card:hover {
   transform: translateY(-6px) scale(1.01);
   box-shadow: 0 20px 44px -16px color-mix(in srgb, var(--accent) 35%, transparent), 0 14px 34px rgba(0, 0, 0, 0.22);
